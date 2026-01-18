@@ -36,7 +36,17 @@ jobs:
 
       - name: GL test
         uses: TinyTapeout/tt-gds-action/gl_test@tt10
-
+  # ✅ ADD THIS
+      - name: Upload GL waveform and report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gatelevel_test_artifacts
+          path: |
+            test/tb.fst
+            test/tb.vcd
+            test/results.xml
+            test/results.html
   viewer:
     needs: gds
     runs-on: ubuntu-24.04
